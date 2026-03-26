@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ApiAplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="api-ecommerce" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.senai.api_ecommerce.ApiEcommerceApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
