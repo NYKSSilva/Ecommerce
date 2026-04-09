@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 
 import java.util.List;
@@ -49,5 +51,14 @@ public class CategoriaController {
 //        repository.deleteById(id); (so deleta porém o certo é "excluir" desativando
         var categoria = repository.getReferenceById(id);
         categoria.excluirCategoria();
+    }
+
+    @GetMapping("/{id}")
+    public DadosDetalhamentoCategoria detalharCategoria (@PathVariable Long id){
+        Categoria categoria = repository.findByIdAndAtivoTrue(id)
+                .orElseThrow(()-> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Categoria não existe"));
+        return  new DadosDetalhamentoCategoria(categoria);
     }
 }
