@@ -1,6 +1,6 @@
 package br.com.senai.api_ecommerce.cliente;
 
-import br.com.senai.api_ecommerce.endereco.DadosEndereco;
+import br.com.senai.api_ecommerce.endereco.DadosCadastroEndereco;
 import jakarta.persistence.Column;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -31,7 +31,7 @@ public record DadosCadastroCliente(
 
         @Valid
         @NotNull
-        DadosEndereco endereco
+        DadosCadastroEndereco endereco
 
 ) {
 

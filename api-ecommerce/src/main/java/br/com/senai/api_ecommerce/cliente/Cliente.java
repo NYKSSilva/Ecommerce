@@ -41,6 +41,10 @@ public class Cliente {
    this.nome = dados.nome();
   if(dados.email() != null && !dados.email().isBlank())
    this.email = dados.email();
+  if(dados.telefone() !=null && dados.telefone().isBlank())
+   this.telefone = dados.telefone();
+  if(dados.endereco() !=null)
+   this.endereco.atualizarEndereco(dados.endereco());
 
  }
 
