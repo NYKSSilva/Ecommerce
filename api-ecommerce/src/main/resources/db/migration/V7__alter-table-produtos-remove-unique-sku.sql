@@ -1,0 +1,2 @@
+ALTER TABLE produtos
+DROP INDEX sku;
