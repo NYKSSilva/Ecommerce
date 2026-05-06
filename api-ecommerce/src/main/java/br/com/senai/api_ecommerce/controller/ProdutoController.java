@@ -22,6 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+//http://localhost:8080/swagger-ui/index.html
+
+
 @RestController
 @RequestMapping("produtos")
 @Tag(name="Produtos", description = "Gerenciamento dos produtos do ecommerce")
@@ -87,7 +90,7 @@ public class ProdutoController {
             @ApiResponse(responseCode = "200", description = "Listagem ocorreu com sucesso",
                     content = {
                             @Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = Page.class))
+                                    schema = @Schema(implementation = DadosDetalhamentoProduto.class))
                     })
     })
     public ResponseEntity<Page<DadosListagemProduto>> listarProdutos(@PageableDefault(size=10, sort={"nome"}) Pageable paginacao){
@@ -97,6 +100,7 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Listar um produto especifico")
     @Tag(name = "Listar Produto por ID", description = "Listagem expecifica de acordo com o id ")
     @ApiResponses( value = {
             @ApiResponse(responseCode = "200", description = "Listagem ocorreu com sucesso",
@@ -118,6 +122,7 @@ public class ProdutoController {
     @DeleteMapping("/{id}")
     @Transactional
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Excluir um produto")
     @Tag(name = "Excluir Produto")
     @ApiResponses( value = {
             @ApiResponse(responseCode = "204", description = "Produto excluido com sucesso",
@@ -139,6 +144,7 @@ public class ProdutoController {
 
     @PutMapping
     @Transactional
+    @Operation(summary = "Atualizar um produto")
     @Tag(name = "Atualizar Produto")
     @ApiResponses( value = {
             @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso",
